@@ -29,7 +29,7 @@ pipeline {
             echo "Déploiement local terminé avec succès !"
         }
         failure {
-            echo "Le déploiement local a échoué à se terminer."
+            echo "Le déploiement local a échoué à se terminer." // file changed
         }
     }
 }
