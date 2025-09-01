@@ -8,11 +8,6 @@ pipeline {
             }
         }
 
-        stage('Install Ansible') {
-            steps {
-                sh 'pip install --user ansible'
-            }
-        }
 
         stage('Deploy Application Locally') {
             steps {
