@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  tomob-db:
+    image: postgres:15-alpine
+    container_name: tomob-db
+    environment:
+      POSTGRES_DB: tomob_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres  
+    ports:
+      - "5432:5432"
+    volumes:
+      - tomob-db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+  
+  car-proxy:
+    build:
+      context: ./car-proxy
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    networks:
+      - app-network
+    
+  tombo-frontend:
+    build:
+      context: ./tomboFrontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - car-proxy
+      - tomoghik
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  tomoghik:
+    build:
+      context: ./Tomoghik
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - tomob-db
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://tomob-db:5432/tomob_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      UPLOAD_DIR: /uploads
+    volumes:
+      - ./uploads:/app/uploads
+    networks:
+      - app-network
+
+volumes:
+  tomob-db-data:
+  uploads:
+
+networks:
+  app-network:
+    driver: bridge
