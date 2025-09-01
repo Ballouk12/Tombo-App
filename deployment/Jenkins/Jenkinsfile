@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Ansible') {
+            steps {
+                sh 'pip install --user ansible'
+            }
+        }
+
+        stage('Deploy Application Locally') {
+            steps {
+                ansiblePlaybook(
+                    playbook: 'deployment/ansible/deploy.yml',
+                    inventory: 'deployment/ansible/hosts.ini'
+                )
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Déploiement local terminé avec succès !"
+        }
+        failure {
+            echo "Le déploiement local a échoué."
+        }
+    }
+}
