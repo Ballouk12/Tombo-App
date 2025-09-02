@@ -1,15 +1,22 @@
 ---
-- name: Déployer l'application Tombo en local
-  hosts: local
+- name: Déployer l'application Tombo sur la VM Docker
+  hosts: remote
   vars:
-    app_path: "{{ playbook_dir }}/.."  # remonte d'un niveau pour accéder au docker-compose.yml
+    local_app_path: "{{ playbook_dir }}/.."          # chemin sur Jenkins
+    remote_app_path: "/home/ubuntu/tombo-app"       # chemin sur la VM distante
   tasks:
 
-    
+  
+    - name: Copier le projet sur la VM distante
+      synchronize:
+        src: "{{ local_app_path }}/"
+        dest: "{{ remote_app_path }}/"
+        delete: yes    # optionnel, supprime les fichiers obsolètes
+        recursive: yes
+
     - name: Lancer l'application via Docker Compose
       shell: |
         docker-compose down
         docker-compose up -d --build
       args:
-        chdir: "{{ app_path }}"
-      become: true
+        chdir: "{{ remote_app_path }}"

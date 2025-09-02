@@ -9,14 +9,17 @@ pipeline {
         }
 
 
-        stage('Deploy Application Locally') {
+         stage('Deploy Application on Remote Docker VM') {
             steps {
+                // Utilisation directe du credential username + private key
                 ansiblePlaybook(
                     playbook: 'deployment/ansible/deploy.yml',
-                    inventory: 'deployment/ansible/hosts.ini'
+                    inventory: 'deployment/ansible/hosts.ini',
+                    credentialsId: 'ssh-user-pass' // ton credential Jenkins
                 )
             }
         }
+    }
     }
 
     post {
@@ -28,4 +31,6 @@ pipeline {
             echo "Vérifiez les journaux pour plus de détails."
         }
     }
+
+
 }
