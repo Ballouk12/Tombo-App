@@ -8,8 +8,7 @@ pipeline {
             }
         }
 
-
-         stage('Deploy Application on Remote Docker VM') {
+        stage('Deploy Application on Remote Docker VM') {
             steps {
                 // Utilisation directe du credential username + private key
                 ansiblePlaybook(
@@ -20,17 +19,14 @@ pipeline {
             }
         }
     }
-    }
 
     post {
         success {
-            echo "Déploiement local terminé avec succès !"
+            echo "Déploiement sur la VM Docker terminé avec succès !"
         }
         failure {
-            echo "Le déploiement local a échoué à se terminer." // j
+            echo "Le déploiement sur la VM Docker a échoué."
             echo "Vérifiez les journaux pour plus de détails."
         }
     }
-
-
 }
