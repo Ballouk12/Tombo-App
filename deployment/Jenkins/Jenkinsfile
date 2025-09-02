@@ -14,7 +14,7 @@ pipeline {
                 ansiblePlaybook(
                     playbook: 'deployment/ansible/deploy.yml',
                     inventory: 'deployment/ansible/hosts.ini',
-                    credentialsId: 'ssh-user-pass' // ton credential Jenkins
+                    credentialsId: 'ssh-user-pass' 
                 )
             }
         }
