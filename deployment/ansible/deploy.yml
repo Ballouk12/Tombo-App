@@ -13,6 +13,7 @@
         dest: "{{ remote_app_path }}/"
         delete: yes    # optionnel, supprime les fichiers obsolètes
         recursive: yes
+      become: true
 
     - name: Lancer l'application via Docker Compose
       shell: |
