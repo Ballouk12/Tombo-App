@@ -10,7 +10,6 @@ pipeline {
 
         stage('Deploy Application on Remote Docker VM') {
             steps {
-                // Utilisation directe du credential username + private 
                 ansiblePlaybook(
                     playbook: 'deployment/ansible/deploy.yml',
                     inventory: 'deployment/ansible/hosts.ini',

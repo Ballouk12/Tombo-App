@@ -11,7 +11,7 @@
       synchronize:
         src: "{{ local_app_path }}/"
         dest: "{{ remote_app_path }}/"
-        delete: yes    # optionnel, supprime les fichiers obsolètes
+        delete: yes    
         recursive: yes
       become: true
 
