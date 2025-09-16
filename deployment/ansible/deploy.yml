@@ -3,7 +3,7 @@
   hosts: remote
   vars:
     local_app_path: "{{ playbook_dir }}/../.."          # chemin sur Jenkins
-    remote_app_path: "/home/ubuntu/tombo-app"       # chemin sur la VM distante
+    remote_app_path: "/home/ubuntu/tombo-app"       # chemin sur la VM dista
   tasks:
 
   
