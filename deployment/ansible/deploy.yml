@@ -15,9 +15,27 @@
         recursive: yes
       become: true
 
-    - name: Lancer l'application via Docker Compose
-      shell: |
-        docker compose down
-        docker compose up -d --build
+    - name: Stopper les conteneurs existants
+      shell: docker compose down
+      args:
+        chdir: "{{ remote_app_path }}"
+
+    - name: Rebuild frontend sans cache
+      shell: docker compose build --no-cache tombo-frontend
+      args:
+        chdir: "{{ remote_app_path }}"
+
+    - name: Rebuild backend sans cache
+      shell: docker compose build --no-cache tomoghik
+      args:
+        chdir: "{{ remote_app_path }}"
+
+    - name: Rebuild car-proxy sans cache
+      shell: docker compose build --no-cache car-proxy
+      args:
+        chdir: "{{ remote_app_path }}"
+
+    - name: Lancer Docker Compose avec les nouvelles images
+      shell: docker compose up -d
       args:
         chdir: "{{ remote_app_path }}"
