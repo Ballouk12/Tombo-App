@@ -39,7 +39,7 @@ const Index = () => {
         
         <div className="relative z-10 text-center mt-24 px-4 max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-red-500 mb-6 leading-tight">
               Buy and Sell{' '}
               <span className="text-primary">Car</span>{' '}
               of your{' '}

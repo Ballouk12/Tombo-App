@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../lib/axiosInstance';
 
-const API_BASE_URL = 'http://localhost:8082';
+const API_BASE_URL = process.env.VITE_API_URL;
 
 export interface Alert {
   id: number;
