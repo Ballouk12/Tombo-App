@@ -20,7 +20,7 @@ Une plateforme full-stack de gestion et de publication d’annonces automobiles,
 
 ## Objectif du projet
 
-Ce projet a été développé pour répondre à un besoin réel : simplifier l’expérience de publication et de recherche d’annonces automobiles en centralisant les opérations sur une application moderne et sécurisée.
+Ce projet a été développé pour répondre à un besoin réel: simplifier l’expérience de publication et de recherche d’annonces automobiles en centralisant les opérations sur une application moderne et sécurisée.
 
 L’objectif principal est de proposer une solution complète qui combine :
 
