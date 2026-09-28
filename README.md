@@ -236,11 +236,11 @@ Cela démarrera :
 Le backend utilise les variables suivantes :
 
 ```env
-SPRING_DATASOURCE_URL=jdbc:postgresql://tomob-db:5432/tomob_db
-SPRING_DATASOURCE_USERNAME=postgres
-SPRING_DATASOURCE_PASSWORD=postgres
-UPLOAD_DIR=/uploads
-FRONTEND_URL=http://tombo-frontend:80
+SPRING_DATASOURCE_URL=
+SPRING_DATASOURCE_USERNAME=
+SPRING_DATASOURCE_PASSWORD=
+UPLOAD_DIR=
+FRONTEND_URL=
 ```
 
 ## Exemple d’utilisation
@@ -264,15 +264,6 @@ Au cours du développement, plusieurs points importants ont été traités :
 - gestion CORS,
 - cohérence de données entre entités liées,
 - mise en place d’une architecture testable et évolutive.
-
-## Améliorations possibles
-
-- ajout de tests unitaires et d’intégration,
-- ajout d’un système de paiement ou d’abonnement,
-- amélioration de la recherche avec Elasticsearch,
-- ajout d’un chat utilisateur/acheteur,
-- optimisation du stockage des images avec cloud storage,
-- CI/CD avec GitHub Actions ou Jenkins.
 
 ## Conclusion
 
